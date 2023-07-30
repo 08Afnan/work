@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name" translatable="true">Trivia Database</string>
+    <string name="general_knowledge">General Knowledge</string>
+</resources>
