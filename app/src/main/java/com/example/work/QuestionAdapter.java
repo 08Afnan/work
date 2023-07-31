@@ -3,24 +3,21 @@ package com.example.work;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-
-
 import androidx.recyclerview.widget.RecyclerView;
-
-
 
 import java.util.ArrayList;
 
 public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.QuestionViewHolder> {
 
-    private ArrayList<TriviaQuestion> triviaQuestionList;
+    private ArrayList<TriviaQuestion> triviaQuestions;
 
-
-    public QuestionAdapter(ArrayList<TriviaQuestion> triviaQuestionList) {
-        this.triviaQuestionList = triviaQuestionList;
+    public QuestionAdapter(ArrayList<TriviaQuestion> triviaQuestions) {
+        this.triviaQuestions = triviaQuestions;
     }
 
     @NonNull
@@ -32,36 +29,36 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
 
     @Override
     public void onBindViewHolder(@NonNull QuestionViewHolder holder, int position) {
-        TriviaQuestion triviaQuestion = triviaQuestionList.get(position);
-        holder.bind(triviaQuestion);
+        TriviaQuestion question = triviaQuestions.get(position);
+        holder.bind(question);
     }
 
     @Override
     public int getItemCount() {
-        return triviaQuestionList.size();
+        return triviaQuestions.size();
     }
 
-    public class QuestionViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView textViewQuestion;
-        private TriviaQuestion triviaQuestion;
+    class QuestionViewHolder extends RecyclerView.ViewHolder {
+        private TextView questionTextView;
+        private RadioGroup optionsRadioGroup;
 
-        public QuestionViewHolder(@NonNull View itemView) {
+        QuestionViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewQuestion = itemView.findViewById(R.id.textViewQuestion);
-            itemView.setOnClickListener(this);
+            questionTextView = itemView.findViewById(R.id.questionTextView);
+            optionsRadioGroup = itemView.findViewById(R.id.optionsRadioGroup);
         }
 
-        public void bind(TriviaQuestion triviaQuestion) {
-            this.triviaQuestion = triviaQuestion;
-            textViewQuestion.setText(triviaQuestion.getQuestion());
+        void bind(TriviaQuestion question) {
+            questionTextView.setText(question.getQuestion());
+
+            optionsRadioGroup.removeAllViews(); // Clear previous options
+
+            // Add options RadioButtons programmatically
+            for (String option : question.getOptions()) {
+                RadioButton radioButton = new RadioButton(itemView.getContext());
+                radioButton.setText(option);
+                optionsRadioGroup.addView(radioButton);
+            }
         }
-
-        @Override
-        public void onClick(View v) {
-
-        }
-
-    // Custom interface to handle click events
-
-}}
-
+    }
+}

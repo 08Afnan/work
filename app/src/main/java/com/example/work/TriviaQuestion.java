@@ -9,6 +9,16 @@ public class TriviaQuestion implements Parcelable {
     private String question;
     private String correctAnswer;
     private ArrayList<String> incorrectAnswers;
+    private String selectedAnswer;
+
+    // Add a getter and setter for the selected answer
+    public String getSelectedAnswer() {
+        return selectedAnswer;
+    }
+
+    public void setSelectedAnswer(String selectedAnswer) {
+        this.selectedAnswer = selectedAnswer;
+    }
 
     public TriviaQuestion(String s, String optionA, String optionB, String optionC, String optionD, String optionA1) {
     }
@@ -81,4 +91,7 @@ public class TriviaQuestion implements Parcelable {
         dest.writeString(correctAnswer);
         dest.writeStringList(incorrectAnswers);
     }
+
+
+
 }

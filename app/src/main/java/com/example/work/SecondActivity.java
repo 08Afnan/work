@@ -1,11 +1,13 @@
 package com.example.work;
 
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,10 +34,63 @@ public class SecondActivity extends AppCompatActivity {
     private ArrayList<TriviaQuestion> triviaQuestionList;
     private RecyclerView recyclerView;
 
+    // ArrayList to store the high scores
+
+    // Find the button to view high scores by its ID
+
+
+
+
+//    // Method to display the current question and options in the UI
+//    private void displayQuestion() {
+//        // Get the current question from the triviaQuestionList
+//        TriviaQuestion currentQuestion = triviaQuestionList.get(currentQuestionIndex);
+//
+//        // Display the question in a TextView
+//        TextView questionTextView = findViewById(R.id.questionTextView);
+//        questionTextView.setText(currentQuestion.getQuestion());
+//
+//        // Get the list of options for the current question
+//        ArrayList<String> options = currentQuestion.getOptions();
+//
+//        // Update the RecyclerView Adapter with the options for the current question
+//        QuestionAdapter adapter = new QuestionAdapter(options);
+//        recyclerView.setAdapter(adapter);
+//    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
+
+
+
+
 
         // Retrieve the EditText view for number of questions
         EditText editTextNumberOfQuestions = findViewById(R.id.editTextNumberOfQuestions);
@@ -97,11 +152,66 @@ public class SecondActivity extends AppCompatActivity {
             } catch (NumberFormatException e) {
                 Toast.makeText(this, "Please enter a valid number for the number of questions", Toast.LENGTH_SHORT).show();
             }
+
+
+
+
+        });
+
+
+
+// Find the buttonSubmit and set an OnClickListener
+        Button buttonSubmit = findViewById(R.id.buttonSubmit);
+        buttonSubmit.setOnClickListener(v -> {
+            // Compute the score
+            int score = computeScore();
+
+            // Navigate to the NameEntryActivity and pass the score as an extra
+            Intent intent = new Intent(SecondActivity.this, NameEntryActivity.class);
+            intent.putExtra("score", score);
+            startActivity(intent);
+
+
         });
 
 
 
     }
+
+
+
+
+    private int computeScore() {
+        int score = 0;
+
+        // Iterate through the triviaQuestionList and check each question's answer
+        for (TriviaQuestion question : triviaQuestionList) {
+            // Check if the selected option matches the correct answer
+            if (question.getSelectedAnswer() != null && question.getSelectedAnswer().equals(question.getCorrectAnswer())) {
+                // Increase the score if the answer is correct
+                score++;
+            }
+        }
+
+        // Return the computed score
+        return score;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private void saveData(String topic, String numOfQuestions) {
         // Save the data to SharedPreferences
@@ -131,14 +241,6 @@ public class SecondActivity extends AppCompatActivity {
                 return 9;
         }
     }
-
-
-
-
-
-
-
-
 
 
 
