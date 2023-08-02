@@ -16,6 +16,10 @@
         android:theme="@style/Theme.Work"
         tools:targetApi="31">
         <activity
+            android:name=".HighScorerNameFragment"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
+        <activity
             android:name=".NameEntryActivity"
             android:exported="false" />
         <activity
