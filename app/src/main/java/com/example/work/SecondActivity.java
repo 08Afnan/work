@@ -24,7 +24,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ *
+ * This class shows the question for each category when user select the question number
+ * by connecting API and downloading it
+ * @author afnan
+ */
 public class SecondActivity extends AppCompatActivity {
 
     // Define a constant key for shared preferences
@@ -34,55 +39,14 @@ public class SecondActivity extends AppCompatActivity {
     private ArrayList<TriviaQuestion> triviaQuestionList;
     private RecyclerView recyclerView;
 
-    // ArrayList to store the high scores
 
-    // Find the button to view high scores by its ID
-
-
-
-
-//    // Method to display the current question and options in the UI
-//    private void displayQuestion() {
-//        // Get the current question from the triviaQuestionList
-//        TriviaQuestion currentQuestion = triviaQuestionList.get(currentQuestionIndex);
-//
-//        // Display the question in a TextView
-//        TextView questionTextView = findViewById(R.id.questionTextView);
-//        questionTextView.setText(currentQuestion.getQuestion());
-//
-//        // Get the list of options for the current question
-//        ArrayList<String> options = currentQuestion.getOptions();
-//
-//        // Update the RecyclerView Adapter with the options for the current question
-//        QuestionAdapter adapter = new QuestionAdapter(options);
-//        recyclerView.setAdapter(adapter);
-//    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    /**
+     *
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -201,18 +165,6 @@ public class SecondActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     private void saveData(String topic, String numOfQuestions) {
         // Save the data to SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
@@ -292,7 +244,12 @@ public class SecondActivity extends AppCompatActivity {
         Volley.newRequestQueue(this).add(request);
     }
 
-    // Helper method to parse JSON response and create a list of TriviaQuestion objects
+    /**
+     * Helper method to parse JSON response and create a list of TriviaQuestion objects
+     * @param response
+     * @return
+     * @throws JSONException
+     */
     private List<TriviaQuestion> parseJsonResponse(JSONObject response) throws JSONException {
         List<TriviaQuestion> questionList = new ArrayList<>();
 

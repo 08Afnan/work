@@ -11,6 +11,13 @@ import android.os.Bundle;
 
 import java.util.ArrayList;
 
+
+/**
+ *
+ *
+ * A class to attempt the class
+ * @author afnan
+ */
 public class QuizActivity extends AppCompatActivity {
 
     @Override

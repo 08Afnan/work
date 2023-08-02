@@ -12,6 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ *
+ * A class to enter the name of user
+ * @author afnan
+ */
 public class NameEntryActivity extends AppCompatActivity {
 
     private AppDatabase appDatabase; // Room database instance
